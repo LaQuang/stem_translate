@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <data>
+        <record model="ir.actions.act_window" id="translate_request_list_action">
+            <field name="name">Translate request</field>
+            <field name="res_model">op.material.version</field>
+            <field name="domain">['|', ('translator_id', '!=', uid), ('translator_id', '=', False)]</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record model="ir.ui.view" id="translate_request_tree_view">
+            <field name="name">op.material.version.tree</field>
+            <field name="model">op.material.version</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Material version">
+                    <field name="material_id"/>
+                    <field name="language"/>
+                    <field name="translator_id"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="translate_request_tree_action_view">
+            <field name="act_window_id" ref="translate_request_list_action"/>
+            <field name="view_mode">tree</field>
+            <field name="view_id" ref="translate_request_tree_view"/>
+        </record>
+
+        <record model="ir.ui.view" id="translate_request_form_view">
+            <field name="name">op.material.version.form</field>
+            <field name="model">op.material.version</field>
+            <field name="arch" type="xml">
+                <form string="Material version Form">
+                    <header>
+                        <button name="claim" type="workflow"
+                                string="Claim"
+                                states="waiting"
+                                class="oe_highlight"/>
+                        <button name="approve" type="workflow"
+                                string="Approve" 
+                                states="translated"
+                                class="oe_highlight"/>
+                        <field name="state" widget="statusbar"/>
+                    </header>
+
+                    <sheet>
+                        <group>
+                            <field name="material_id"/>
+                            <field name="language"/>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record model="ir.actions.act_window.view" id="translate_request_form_action_view">
+            <field name="act_window_id" ref="translate_request_list_action"/>
+            <field name="view_mode">form</field>
+            <field name="view_id" ref="translate_request_form_view"/>
+        </record>
+    </data>
+</odoo>

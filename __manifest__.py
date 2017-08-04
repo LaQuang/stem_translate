@@ -1,32 +1,32 @@
 # -*- coding: utf-8 -*-
 {
-    'name': "stem_translate",
+    'name': "STEM Translate",
 
-    'summary': """
-        Short (1 phrase/line) summary of the module's purpose, used as
-        subtitle on modules listing or apps.openerp.com""",
+    'summary': 'Translate',
 
     'description': """
-        Long description of module's purpose
+        This module provides management of translating document materials from LMS
     """,
 
-    'author': "My Company",
-    'website': "http://www.yourcompany.com",
+    'author': "anh.bui",
+    'website': "http://dtt.vn",
 
     # Categories can be used to filter modules in modules listing
     # Check https://github.com/odoo/odoo/blob/master/odoo/addons/base/module/module_data.xml
     # for the full list
-    'category': 'Uncategorized',
+    'category': 'Education',
     'version': '0.1',
 
     # any module necessary for this one to work correctly
-    'depends': ['base'],
+    'depends': ['base', 'openeducat_lms'],
 
     # always loaded
     'data': [
         # 'security/ir.model.access.csv',
-        'views/views.xml',
-        'views/templates.xml',
+        'views/translate_request.xml',
+        'views/your_translate.xml',
+        'views/menu.xml',
+        'views/material_version_workflow.xml',
     ],
     # only loaded in demonstration mode
     'demo': [
