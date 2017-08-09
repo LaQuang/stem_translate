@@ -1,0 +1,25 @@
+<odoo>
+    <data>
+        <record id="group_manager" model="res.groups">
+            <field name="name">STEM Translate / Manager</field>
+        </record>
+
+        <record id="group_translator" model="res.groups">
+            <field name="name">STEM Translate / Translator</field>
+        </record>
+
+        <record id="rule_for_translator" model="ir.rule">
+            <field name="name">Translator can only view waiting or his own translations</field>
+            <field name="model_id" ref="model_op_material_version"/>
+            <field name="groups" eval="[(4, ref('stem_translate.group_translator'))]"/>
+            <field name="perm_read" eval="1"/>
+            <field name="perm_write" eval="0"/>
+            <field name="perm_create" eval="0"/>
+            <field name="perm_unlink" eval="0"/>
+            <field name="domain_force">
+                ['|', ('state', '=', 'waiting'), ('translator_id', '=', user.id)]
+            </field>
+        </record>
+    </data>
+</odoo>
+

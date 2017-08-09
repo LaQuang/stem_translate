@@ -22,9 +22,10 @@
 
     # always loaded
     'data': [
-        # 'security/ir.model.access.csv',
+        'security/security.xml',
+        'security/ir.model.access.csv',
         'views/translate_request.xml',
-        'views/your_translate.xml',
+        'views/your_translations.xml',
         'views/menu.xml',
         'views/material_version_workflow.xml',
     ],

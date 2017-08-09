@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <odoo>
     <data>
-        <record model="ir.actions.act_window" id="your_translate_list_action">
-            <field name="name">Your translate</field>
+        <record model="ir.actions.act_window" id="your_translations_list_action">
+            <field name="name">Your Translations</field>
             <field name="res_model">op.material.version</field>
             <field name="domain">[('translator_id', '=', uid)]</field>
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
         </record>
 
-        <record model="ir.ui.view" id="your_translate_tree_view">
+        <record model="ir.ui.view" id="your_translations_tree_view">
             <field name="name">op.material.version.tree</field>
             <field name="model">op.material.version</field>
             <field name="type">tree</field>
@@ -17,17 +17,18 @@
                 <tree string="Material version">
                     <field name="material_id"/>
                     <field name="language"/>
+                    <field name="state"/>
                 </tree>
             </field>
         </record>
 
-        <record model="ir.actions.act_window.view" id="your_translate_tree_action_view">
-            <field name="act_window_id" ref="your_translate_list_action"/>
+        <record model="ir.actions.act_window.view" id="your_translations_tree_action_view">
+            <field name="act_window_id" ref="your_translations_list_action"/>
             <field name="view_mode">tree</field>
-            <field name="view_id" ref="your_translate_tree_view"/>
+            <field name="view_id" ref="your_translations_tree_view"/>
         </record>
 
-        <record model="ir.ui.view" id="your_translate_form_view">
+        <record model="ir.ui.view" id="your_translations_form_view">
             <field name="name">op.material.version.form</field>
             <field name="model">op.material.version</field>
             <field name="arch" type="xml">
@@ -42,17 +43,18 @@
 
                     <sheet>
                         <group>
-                            <field name="datas"/>
+                            <field name="material_id" readonly="1"/>
+                            <field name="datas" attrs="{ 'readonly': [('state', '!=', 'translating')] }"/>
                         </group>
                     </sheet>
                 </form>
             </field>
         </record>
 
-        <record model="ir.actions.act_window.view" id="your_translate_form_action_view">
-            <field name="act_window_id" ref="your_translate_list_action"/>
+        <record model="ir.actions.act_window.view" id="your_translations_form_action_view">
+            <field name="act_window_id" ref="your_translations_list_action"/>
             <field name="view_mode">form</field>
-            <field name="view_id" ref="your_translate_form_view"/>
+            <field name="view_id" ref="your_translations_form_view"/>
         </record>
     </data>
 </odoo>

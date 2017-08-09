@@ -7,7 +7,7 @@
         <!-- Translate request -->
         <menuitem id="translate_request_menu" parent="translate_main_menu" name="Translate request" action="translate_request_list_action"/>
 
-        <!-- Your translate -->
-        <menuitem id="your_translate_menu" parent="translate_main_menu" name="Your translate" action="your_translate_list_action"/>
+        <!-- Your translations -->
+        <menuitem id="your_translations_menu" parent="translate_main_menu" name="Your translations" action="your_translations_list_action"/>
     </data>
 </odoo>

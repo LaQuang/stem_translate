@@ -48,8 +48,9 @@
 
                     <sheet>
                         <group>
-                            <field name="material_id"/>
-                            <field name="language"/>
+                            <field name="material_id" attrs="{ 'readonly': [('state', '!=', False), ('state', '!=', 'waiting')] }"/>
+                            <field name="language" attrs="{ 'readonly': [('state', '!=', False), ('state', '!=', 'waiting')] }"/>
+                            <field name="datas" attrs="{ 'invisible': [('state', 'not in', ['translated', 'approved'])] }" readonly="1"/>
                         </group>
                     </sheet>
                 </form>
