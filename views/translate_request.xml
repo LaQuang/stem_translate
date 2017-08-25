@@ -35,6 +35,11 @@
             <field name="arch" type="xml">
                 <form string="Material version Form">
                     <header>
+                        <button name="auto_translate" type="workflow"
+                                string="Auto translate"
+                                class="oe_highlight"
+                                attrs="{ 'invisible': ['|', ('state', '!=', 'waiting'), ('material_type', '!=', 'text')] }"
+                                groups="stem_translate.group_manager"/>
                         <button name="claim" type="workflow"
                                 string="Claim"
                                 states="waiting"
@@ -59,8 +64,20 @@
 
                         <group>
                             <field name="material_id" attrs="{ 'readonly': [('state', '!=', False), ('state', '!=', 'waiting')] }"/>
+
+                            <field name="material_type" invisible="1"/>
+
+                            <field name="material_text" attrs="{ 'invisible': ['|', ('state', 'not in', ['translated', 'approved']), ('material_type', '!=', 'text')] }"/>
+                        </group>
+
+                        <group>
                             <field name="language" attrs="{ 'readonly': [('state', '!=', False), ('state', '!=', 'waiting')] }"/>
-                            <field name="datas" attrs="{ 'invisible': [('state', 'not in', ['translated', 'approved'])] }" readonly="1"/>
+
+                            <field name="version_type" attrs="{ 'invisible': [('state', 'not in', ['translated', 'approved'])] }" readonly="1"/>
+
+                            <field name="datas" attrs="{ 'invisible': ['|', ('state', 'not in', ['translated', 'approved']), ('version_type', '!=', 'file')] }" readonly="1"/>
+
+                            <field name="text" attrs="{ 'invisible': ['|', ('state', 'not in', ['translated', 'approved']), ('version_type', '!=', 'text')] }" readonly="1"/>
                         </group>
                     </sheet>
                 </form>

@@ -44,7 +44,16 @@
                     <sheet>
                         <group>
                             <field name="material_id" readonly="1"/>
-                            <field name="datas" attrs="{ 'readonly': [('state', '!=', 'translating')] }"/>
+
+                            <field name="version_type" />
+
+                            <field name="text" 
+                                attrs="{ 'readonly': [('state', '!=', 'translating')], 
+                                'invisible': [('version_type', '!=', 'text')] }"/>
+
+                            <field name="datas" widget="binary" 
+                                attrs="{ 'readonly': [('state', '!=', 'translating')], 
+                                'invisible': [('version_type', '!=', 'file')] }"/>
                         </group>
                     </sheet>
                 </form>

@@ -13,26 +13,29 @@
             <field name="kind">function</field>
             <field name="action">action_wait()</field>
         </record>
-
         <record model="workflow.activity" id="translating">
             <field name="name">Translating</field>
             <field name="wkf_id" ref="wkf_material_version"/>
             <field name="kind">function</field>
             <field name="action">action_claim()</field>
         </record>
-
         <record model="workflow.activity" id="translated">
             <field name="name">Translated</field>
             <field name="wkf_id" ref="wkf_material_version"/>
             <field name="kind">function</field>
             <field name="action">action_complete()</field>
         </record>
-
         <record model="workflow.activity" id="approved">
             <field name="name">Approved</field>
             <field name="wkf_id" ref="wkf_material_version"/>
             <field name="kind">function</field>
             <field name="action">action_approve()</field>
+        </record>
+        <record model="workflow.activity" id="auto_translate">
+            <field name="name">Auto translate</field>
+            <field name="wkf_id" ref="wkf_material_version"/>
+            <field name="kind">function</field>
+            <field name="action">action_auto_translate()</field>
         </record>
 
         <record model="workflow.transition" id="material_version_waiting_to_translating">
@@ -49,6 +52,16 @@
             <field name="act_from" ref="translated"/>
             <field name="act_to" ref="approved"/>
             <field name="signal">approve</field>
+        </record>
+        <record model="workflow.transition" id="material_version_waiting_to_auto_translate">
+            <field name="act_from" ref="waiting"/>
+            <field name="act_to" ref="auto_translate"/>
+            <field name="signal">auto_translate</field>
+        </record>
+        <record model="workflow.transition" id="material_version_auto_translate_to_translated">
+            <field name="act_from" ref="auto_translate"/>
+            <field name="act_to" ref="translated"/>
+            <field name="condition">True</field>
         </record>
     </data>
 </odoo>
